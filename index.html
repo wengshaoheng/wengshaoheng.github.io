@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -7,22 +7,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>翁少衡的技术BLOG</title>
 	<style type="text/css">
-		
+		.header {
+			background-color:black;
+			color:white;
+			text-align:center;
+			padding:5px;
+		}
+		.nav {
+			line-height:30px;
+			background-color:#eeeeee;
+			height:300px;
+			width:100px;
+			float:left;
+			padding:5px;	      
+		}
+		.section {
+			width:350px;
+			float:left;
+			padding:10px;	 	 
+		}
+		.footer {
+			background-color:black;
+			color:white;
+			clear:both;
+			text-align:center;
+		   padding:5px;	 	 
+		}
 	</style>
 </head>
 
 <body>
 	<div id="app">
-		<div id="header"></div>
+		<div id="header" class="header">
+			<p>{{header.title}}</p>
+		</div>
 	</div> 
 </body>
 
 <!-- 渲染脚本 开始 -->
 <script src="https://cdn.staticfile.org/vue/2.5.6/vue.min.js"></script>
 <script src="https://cdn.staticfile.org/vue-router/2.7.0/vue-router.min.js"></script>
+<script src="staticdata.js"></script>
 <script src="data.js"></script>
 <script>
-
+	var hv = new Vue({
+		el : 'header',
+		data : static_data
+	});
 </script>
 <!-- 渲染脚本 结束 -->
 
