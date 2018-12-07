@@ -1,11 +1,33 @@
 <!DOCTYPE HTML>
 
 <html>
-	<head>
-		<title>Shaoheng.Weng's IT Blog</title>
-	</head>
-	<body>
-		<h1>Welcome To Visit My Blog</h1>
-	</body>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>翁少衡的BLOG</title>
+	<style type="text/css">
 
+	</style>
+</head>
+<body>
+	<div id="app">
+		{{m}} <br />
+		<todo-item></todo-item>
+	</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script>
+	Vue.component('todo-item', {
+		template: '<p>这是个待办项组件</p>'
+	})
+
+
+	var app= new Vue({
+		el:"#app",
+		data:{
+			m:"hello vue.js",
+		},		 
+	});
+</script>
 </html>
