@@ -5,39 +5,40 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>翁少衡的技术BLOG</title>
+	<title>APP</title>
 	<style type="text/css">
+		body {
+			font-size: 14px;
+			font-family: Consolas;
+			color: black;
+		}
 		.app {
-			color:white;
-			padding:5px;
-			width: 80%;
+			padding:2px;
+			width: 85%;
 			text-align: center;
 			margin: auto;
 		}
 		.header {
 			background-color:black;
-			color:white;
+			color: white;
 			text-align:left;
 			padding:5px;
-			border-bottom: solid black 3px;
+			border-bottom: solid black 1px;
 			height: 20%;
 			
 		}
 		.nav {
 			line-height:30px;
 			background-color:#eeeeee;
-			width:30%;
+			width:25%;
 			float:left;
 			padding:5px;
-			border: solid red 1px;	      
 		}
 		.section {
 			color: black;
-			width:65%;
+			width:70%;
 			float:right;
 			padding:10px;	
-			border: solid red 1px;	      
-			 	 
 		}
 		.footer {
 			background-color:black;
@@ -54,7 +55,7 @@
 		<div id="header" class="header">
 			<h2>Thanks for visiting my blog!</h2>
 		</div>
-		<div id="contentPane">
+		<div id="contentPane" style="margin-top:5px">
 			<div class="nav">
 				item1 <br />
 				item2 <br />
@@ -72,6 +73,7 @@
 <script src="staticdata.js"></script>
 <script src="data.js"></script>
 <script>
+	const a = 100;
 	var hv = new Vue({
 		el : 'header',
 		data : static_data
