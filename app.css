@@ -1,0 +1,39 @@
+body {
+	font-size: 14px;
+	font-family: Consolas;
+	color: black;
+}
+.center {
+	margin: auto;
+	width : 85%;
+}
+.app {
+	padding: 0;
+	text-align: center;
+}
+.header {
+	background-color:black;
+	color: white;
+	text-align:left;
+	padding:5px;
+	height: 20%;
+}
+.nav {
+	line-height:30px;
+	background-color:#eeeeee;
+	width:25%;
+	float:left;
+}
+.section {
+	color: black;
+	width:72%;
+	float:right;
+	text-align: left;
+}
+.footer {
+	background-color:black;
+	color:white;
+	clear:both;
+	text-align:center;
+   	padding:5px;	 	 
+}
