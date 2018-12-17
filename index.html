@@ -15,9 +15,8 @@
 			<h2>Thanks for visiting my blog!</h2>
 		</div>
 		<div id="contentPane" style="margin-top:5px">
-			<div class="nav">
-				item1 <br />
-				item2 <br />
+			<div id="nav" class="nav">
+				<span>{{navTitle}}</span>
 			</div>
 			<div class="section">
 			xxxxxxxxxxxxxxx
@@ -30,12 +29,16 @@
 <script src="https://cdn.staticfile.org/vue/2.5.6/vue.min.js"></script>
 <script src="https://cdn.staticfile.org/vue-router/2.7.0/vue-router.min.js"></script>
 <script src="staticdata.js"></script>
+<script src="blog_list.js"></script>
 <script src="data.js"></script>
 <script>
 	const a = 100;
-	var hv = new Vue({
-		el : 'header',
-		data : static_data
+	new Vue({
+		el : 'nav',
+		data : {
+            navTitle : "Blog List",
+            "blogList" : blogList
+        }
 	});
 </script>
 <!-- 渲染脚本 结束 -->
