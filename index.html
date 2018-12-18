@@ -16,10 +16,40 @@
 		</div>
 		<div id="contentPane" style="margin-top:5px">
 			<div id="nav" class="nav">
-				<span>{{navTitle}}</span>
+                <span class="navTitle">{{navTitle}}</span> <br />
+                <div v-for="(blogCat, index) in blogList">
+                    <ul>
+                        <li>
+                            <span>{{blogCat.catalog}}</span>
+                            <div v-for="blog in blogCat.articleList">
+                                <a href="{{blog.url}}">{{blog.title}}</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
 			</div>
 			<div class="section">
-			xxxxxxxxxxxxxxx
+                <div v-html="content"></div>
+                <div v-text="content"></div>
+                <div v-text="map.title"></div>
+                <div class="button2"><a v-on:click="clickMe($event)">Click Me</a></div>
+                <div class="button2"><a @click="clickMe($event)">Click Me2222</a></div>
+                <div v-bind:title="catalog">Hello v-bind</div>
+                <div :title="catalog">Hello v-bind short word</div>
+                <div>
+                    <form>
+                        <input v-model="name" /><br />
+                        <span>You have inputted: {{name}}</span>
+                    </form>
+                </div>
+                <div>
+                    <label>First Num:</label><input v-model="num1" /> + 
+                    <label>Second Num:</label><input v-model="num2" />
+                </div>
+                <div><span>Result:</span><span>{{result}}</span></div>
+                <div v-if="hideAndShow">text for test show and hide 1</div>
+                <div v-show="hideAndShow">text for test show and hide 2</div>
+                <div class="button2"><a v-on:click="display($event)">Hide And Show</a></div>
 			</div>
 		</div>
 	</div> 
@@ -33,13 +63,40 @@
 <script src="data.js"></script>
 <script>
 	const a = 100;
-	new Vue({
-		el : 'nav',
+	var content = new Vue({
+        el   : '#contentPane',
 		data : {
-            navTitle : "Blog List",
-            "blogList" : blogList
+            "navTitle" : "Blog List",
+            "blogList" : blogList,
+            "content"  : "<h1>hello, title</h1>",
+            "catalog"  : "My Catalog!",
+            "name"     : "your name",
+            "map"      : {
+                "title" : "test title"
+            },
+            "num1"     : '',
+            "num2"     : '',
+            "hideAndShow" : true
+        },
+        methods : {
+            clickMe : function(e) {
+                let text = e.currentTarget.text;
+                this.map.title = "update the title updated by " + text;
+            },
+            display : function(e) {
+                this.hideAndShow = !this.hideAndShow;
+            }
+        },
+        computed : {
+            "result" : function() {
+                if (this.num1 == '' || this.num2 == '') {
+                    return "You haven't input completely!";
+                } else {
+                    return parseInt(this.num1) + parseInt(this.num2);
+                }
+            }
         }
-	});
+    });
 </script>
 <!-- 渲染脚本 结束 -->
 

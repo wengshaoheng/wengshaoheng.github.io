@@ -43,5 +43,30 @@ var blogList = [{
                 "url"         : "/#"
             }
         ]
+    },{
+        "catalog": "GIT",
+        "createdDate": "yyyy-mm-dd",
+        "articleList": [{
+                "category"    : "GIT",
+                "createdDate" : "yyyy-mm-dd",
+                "title"       : "GIT BASIC COMMANDS",
+                "url"         : "/#"
+            },{
+                "category"    : "GIT",
+                "createdDate" : "yyyy-mm-dd",
+                "title"       : "GIT ADVANCED USAGE ",
+                "url"         : "/#"
+            }
+        ]
+    },{
+        "catalog": "VUE",
+        "createdDate": "yyyy-mm-dd",
+        "articleList": [{
+                "category"    : "VUE",
+                "createdDate" : "yyyy-mm-dd",
+                "title"       : "VUE DEMO",
+                "url"         : "/#"
+            }
+        ]
     }
 ];
