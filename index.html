@@ -14,15 +14,17 @@
 		<div id="header" class="header">
 			<h2>Thanks for visiting my blog!</h2>
 		</div>
-		<div id="contentPane" style="margin-top:5px">
+		<div id="contentPane" style="margin-top:5px;min-height: 80%;">
 			<div id="nav" class="nav">
                 <span class="navTitle">{{navTitle}}</span> <br />
                 <div v-for="(blogCat, index) in blogList">
-                    <ul>
+                    <div class="catalog">
+                        <a href="#" @click="expandOrFold($event)">+ {{blogCat.catalog}}</a>
+                    </div>
+                    <ul :id="a+index" style="display:none;">
                         <li>
-                            <span>{{blogCat.catalog}}</span>
                             <div v-for="blog in blogCat.articleList">
-                                <a href="{{blog.url}}">{{blog.title}}</a>
+                                <a :href="blog.url">{{blog.title}}</a>
                             </div>
                         </li>
                     </ul>
@@ -62,7 +64,7 @@
 <script src="blog_list.js"></script>
 <script src="data.js"></script>
 <script>
-	const a = 100;
+	const a = "BLOGCAT_";
 	var content = new Vue({
         el   : '#contentPane',
 		data : {
@@ -85,6 +87,17 @@
             },
             display : function(e) {
                 this.hideAndShow = !this.hideAndShow;
+            },
+            expandOrFold : function(e) {
+                let topEl = e.currentTarget.parentElement.nextElementSibling;
+                let oldstyle = topEl.getAttribute('style');
+                let newStyle = oldstyle != "display:block" ? "display:block" : "display:none";
+                topEl.setAttribute('style', newStyle);
+                let oldtext = e.currentTarget.text.trim();
+                var pattern = /^[+]/;
+                var folded = pattern.test(oldtext);
+                let newtext = folded ? oldtext.replace('+', '-') : oldtext.replace('-', '+');
+                e.currentTarget.text = newtext;
             }
         },
         computed : {
