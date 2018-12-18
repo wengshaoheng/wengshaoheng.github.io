@@ -14,7 +14,7 @@ var blogList = [{
             }
         ]
     },{
-        "catalog": "Java 工作笔记",
+        "catalog": "Windows 工作笔记",
         "createdDate": "yyyy-mm-dd",
         "articleList": [{
                 "category"    : "SPRING",
@@ -29,7 +29,112 @@ var blogList = [{
             }
         ]
     },{
-        "catalog": "DevOps 工作笔记",
+        "catalog": "Spring Boot 工作笔记",
+        "createdDate": "yyyy-mm-dd",
+        "articleList": [{
+                "category"    : "SPRING",
+                "createdDate" : "yyyy-mm-dd",
+                "title"       : "Spring AOP",
+                "url"         : "#"
+            },{
+                "category"    : "SPRINGBOOT",
+                "createdDate" : "yyyy-mm-dd",
+                "title"       : "SpringBoot App",
+                "url"         : "#"
+            }
+        ]
+    },{
+        "catalog": "Spring MVC 工作笔记",
+        "createdDate": "yyyy-mm-dd",
+        "articleList": [{
+                "category"    : "SPRING",
+                "createdDate" : "yyyy-mm-dd",
+                "title"       : "Spring AOP",
+                "url"         : "#"
+            },{
+                "category"    : "SPRINGBOOT",
+                "createdDate" : "yyyy-mm-dd",
+                "title"       : "SpringBoot App",
+                "url"         : "#"
+            }
+        ]
+    },{
+        "catalog": "Maven 工作笔记",
+        "createdDate": "yyyy-mm-dd",
+        "articleList": [{
+                "category"    : "SPRING",
+                "createdDate" : "yyyy-mm-dd",
+                "title"       : "Spring AOP",
+                "url"         : "#"
+            },{
+                "category"    : "SPRINGBOOT",
+                "createdDate" : "yyyy-mm-dd",
+                "title"       : "SpringBoot App",
+                "url"         : "#"
+            }
+        ]
+    },{
+        "catalog": "Spring Cloud 工作笔记",
+        "createdDate": "yyyy-mm-dd",
+        "articleList": [{
+                "category"    : "SPRING",
+                "createdDate" : "yyyy-mm-dd",
+                "title"       : "Spring AOP",
+                "url"         : "#"
+            },{
+                "category"    : "SPRINGBOOT",
+                "createdDate" : "yyyy-mm-dd",
+                "title"       : "SpringBoot App",
+                "url"         : "#"
+            }
+        ]
+    },{
+        "catalog": "MyBatis 工作笔记",
+        "createdDate": "yyyy-mm-dd",
+        "articleList": [{
+                "category"    : "SPRING",
+                "createdDate" : "yyyy-mm-dd",
+                "title"       : "Spring AOP",
+                "url"         : "#"
+            },{
+                "category"    : "SPRINGBOOT",
+                "createdDate" : "yyyy-mm-dd",
+                "title"       : "SpringBoot App",
+                "url"         : "#"
+            }
+        ]
+    },{
+        "catalog": "Docker 工作笔记",
+        "createdDate": "yyyy-mm-dd",
+        "articleList": [{
+                "category"    : "DOCKER",
+                "createdDate" : "yyyy-mm-dd",
+                "title"       : "How to build docker",
+                "url"         : "#"
+            },{
+                "category"    : "KUBERNETES",
+                "createdDate" : "yyyy-mm-dd",
+                "title"       : "How to install K8S",
+                "url"         : "#"
+            }
+        ]
+    },{
+        "catalog": "Kubernetes 工作笔记",
+        "createdDate": "yyyy-mm-dd",
+        "articleList": [{
+                "category"    : "DOCKER",
+                "createdDate" : "yyyy-mm-dd",
+                "title"       : "How to build docker",
+                "url"         : "#"
+            },{
+                "category"    : "KUBERNETES",
+                "createdDate" : "yyyy-mm-dd",
+                "title"       : "How to install K8S",
+                "url"         : "#"
+            }
+        ]
+    },{
+        "catalog": "Service Mesh 工作笔记",
         "createdDate": "yyyy-mm-dd",
         "articleList": [{
                 "category"    : "DOCKER",
@@ -60,6 +165,16 @@ var blogList = [{
         ]
     },{
         "catalog": "Vue 学习笔记",
+        "createdDate": "yyyy-mm-dd",
+        "articleList": [{
+                "category"    : "VUE",
+                "createdDate" : "yyyy-mm-dd",
+                "title"       : "VUE DEMO",
+                "url"         : "#"
+            }
+        ]
+    },{
+        "catalog": "JQuery 学习笔记",
         "createdDate": "yyyy-mm-dd",
         "articleList": [{
                 "category"    : "VUE",
