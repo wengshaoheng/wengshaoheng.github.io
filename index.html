@@ -24,13 +24,14 @@
                     <ul :id="a+index" style="display:none;">
                         <li>
                             <div v-for="blog in blogCat.articleList">
-                                <a :href="blog.url">{{blog.title}}</a>
+                                <a :href="blog.url" @click="selectBlog($event)">{{blog.title}}</a>
                             </div>
                         </li>
                     </ul>
                 </div>
 			</div>
 			<div class="section">
+                <span class="currentLink">{{currentLink}}</span>
                 <div v-html="content"></div>
                 <div v-text="content"></div>
                 <div v-text="map.title"></div>
@@ -79,7 +80,10 @@
             },
             "num1"     : '',
             "num2"     : '',
-            "hideAndShow" : true
+            "hideAndShow" : true,
+            "currentCatalog" : "",
+            "currentBlog"    : "",
+            "currentLink"    : ""
         },
         methods : {
             clickMe : function(e) {
@@ -95,10 +99,16 @@
                 let newStyle = oldstyle != "display:block" ? "display:block" : "display:none";
                 topEl.setAttribute('style', newStyle);
                 let oldtext = e.currentTarget.text.trim();
-                var pattern = /^[+]/;
+                let pattern = /^[+]/;
                 var folded = pattern.test(oldtext);
                 let newtext = folded ? oldtext.replace('+', '-') : oldtext.replace('-', '+');
                 e.currentTarget.text = newtext;
+            },
+            selectBlog : function(e) {
+                let obj = e.currentTarget.parentElement.parentElement.parentElement.parentElement;
+                this.currentCatalog = obj.firstElementChild.firstElementChild.text.trim().replace(/^[\-] /, '');
+                this.currentBlog    = e.currentTarget.text.trim();
+                this.currentLink    = "# " + this.currentCatalog + " >> " + this.currentBlog;
             }
         },
         computed : {
