@@ -6,25 +6,28 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css" href="app.css" /> 
+    <link href="https://cdn.bootcss.com/highlight.js/9.13.1/styles/a11y-dark.min.css" rel="stylesheet">
 	<title>APP</title>
 </head>
 
 <body>
 	<div id="app" class="app center">
 		<div id="header" class="header">
-			<h2>Thanks for visiting my blog!</h2>
+            <div style="float:left;width: 50%; height: 100%;text-decoration: underline;font-size: 15pt;"><br />一个老翁的工作日志!</div>
+            <!--<div><img style="max-width: 60px;max-height: 60px; float:right; margin:3" src="qie.png" /></div>-->
+            <div style="clear: both"></div>
 		</div>
-		<div id="contentPane" style="margin-top:5px;min-height: 80%;">
+		<div id="contentPane" style="clear: both; margin: 2;">
 			<div id="nav" class="nav">
-                <span class="navTitle">{{navTitle}}</span> <br />
-                <div v-for="(blogCat, index) in blogList">
+                <span class="navTitle" @click="expandAllCat($event)">{{navTitle}}</span> <br />
+                <div id="blogCatList" v-for="(blogCat, index) in blogList">
                     <div class="catalog">
-                        <a href="#" @click="expandOrFold($event)">+ {{blogCat.catalog}}</a>
+                        <a href="#" @click="expandCat($event)">+ {{blogCat.catalog}}</a>
                     </div>
                     <ul :id="a+index" style="display:none;">
                         <li>
-                            <div v-for="blog in blogCat.articleList">
-                                <a :href="blog.url" @click="selectBlog($event)">{{blog.title}}</a>
+                            <div v-for="(blog, index2) in blogCat.articleList">
+                                <a :href="blog.url" @click="selectBlog($event)">{{index2 + 1}}. {{blog.title}}</a>
                             </div>
                         </li>
                     </ul>
@@ -32,27 +35,6 @@
 			</div>
 			<div class="section">
                 <span class="currentLink">{{currentLink}}</span>
-                <div v-html="content"></div>
-                <div v-text="content"></div>
-                <div v-text="map.title"></div>
-                <div class="button2"><a v-on:click="clickMe($event)">Click Me</a></div>
-                <div class="button2"><a @click="clickMe($event)">Click Me2222</a></div>
-                <div v-bind:title="catalog">Hello v-bind</div>
-                <div :title="catalog">Hello v-bind short word</div>
-                <div>
-                    <form>
-                        <input v-model="name" /><br />
-                        <span>You have inputted: {{name}}</span>
-                    </form>
-                </div>
-                <div>
-                    <label>First Num:</label><input v-model="num1" /> + 
-                    <label>Second Num:</label><input v-model="num2" />
-                </div>
-                <div><span>Result:</span><span>{{result}}</span></div>
-                <div v-if="hideAndShow">text for test show and hide 1</div>
-                <div v-show="hideAndShow">text for test show and hide 2</div>
-                <div class="button2"><a v-on:click="display($event)">Hide And Show</a></div>
                 <div id="mypage">
                     <div>
                         <router-link to="/foo">Go to Foo</router-link>
@@ -61,8 +43,10 @@
                     <router-view></router-view>
                 </div>
                 
-			</div>
-		</div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        <div id="footer" class="footer">Just for my daily!</div>
 	</div> 
 </body>
 
@@ -70,91 +54,58 @@
 <!-- 渲染脚本 开始 -->
 <script src="https://cdn.staticfile.org/vue/2.5.6/vue.min.js"></script>
 <script src="https://cdn.staticfile.org/vue-router/2.7.0/vue-router.min.js"></script>
-<script src="staticdata.js"></script>
-<script src="blog_list.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.13.1/highlight.min.js"></script>
+<script src="blogList.js"></script>
 <script src="data.js"></script>
 <script>
-    const a = "BLOGCAT_";
-    const Foo = { template: '<div>foo</div>' }
-const Bar = { template: '<div>baxxxxr</div>' }
- 
-// 2. 定义路由
-// 每个路由应该映射一个组件。 其中"component" 可以是
-// 通过 Vue.extend() 创建的组件构造器，
-// 或者，只是一个组件配置对象。
-// 我们晚点再讨论嵌套路由。
-const routes = [
-  { path: '/foo', component: Foo },
-  { path: '/bar', component: Bar }
-]
- 
-// 3. 创建 router 实例，然后传 `routes` 配置
-// 你还可以传别的配置参数, 不过先这么简单着吧。
-const router = new VueRouter({
-  routes // （缩写）相当于 routes: routes
-})
- 
-// 4. 创建和挂载根实例。
-// 记得要通过 router 配置参数注入路由，
-// 从而让整个应用都有路由功能
-const app = new Vue({
-  router
-}).$mount('#mypage')
+        const a = "BLOGCAT_";
+        const Foo = { template: '<div>foo</div>' }
+        const Bar = { template: '<div>baxxxxr</div>' }
+        const routes = [
+            { path: '/foo', component: Foo },
+            { path: '/bar', component: Bar }
+        ]
 
-	var content = new Vue({
-        router : router,
-        el   : '#contentPane',
-		data : {
-            "navTitle" : "工作笔记列表",
-            "blogList" : blogList,
-            "content"  : "<h1>hello, title</h1>",
-            "catalog"  : "My Catalog!",
-            "name"     : "your name",
-            "map"      : {
-                "title" : "test title"
+        const router = new VueRouter({
+            routes : routes 
+        })
+	    var content = new Vue({
+            router: router,
+            el: '#contentPane',
+            data: {
+                "navTitle": "工作笔记列表",
+                "blogList": blogList,
+                "currentCatalog": "",
+                "currentBlog": "",
+                "currentLink": ""
             },
-            "num1"     : '',
-            "num2"     : '',
-            "hideAndShow" : true,
-            "currentCatalog" : "",
-            "currentBlog"    : "",
-            "currentLink"    : ""
-        },
-        methods : {
-            clickMe : function(e) {
-                let text = e.currentTarget.text;
-                this.map.title = "update the title updated by " + text;
-            },
-            display : function(e) {
-                this.hideAndShow = !this.hideAndShow;
-            },
-            expandOrFold : function(e) {
-                let topEl = e.currentTarget.parentElement.nextElementSibling;
-                let oldstyle = topEl.getAttribute('style');
-                let newStyle = oldstyle != "display:block" ? "display:block" : "display:none";
-                topEl.setAttribute('style', newStyle);
-                let oldtext = e.currentTarget.text.trim();
-                var folded = /^[+]/.test(oldtext);
-                let newtext = folded ? oldtext.replace('+', '-') : oldtext.replace('-', '+');
-                e.currentTarget.text = newtext;
-            },
-            selectBlog : function(e) {
-                let obj = e.currentTarget.parentElement.parentElement.parentElement.parentElement;
-                this.currentCatalog = obj.firstElementChild.firstElementChild.text.trim().replace(/^[\-] /, '');
-                this.currentBlog    = e.currentTarget.text.trim();
-                this.currentLink    = "# " + this.currentCatalog + " >> " + this.currentBlog;
-            }
-        },
-        computed : {
-            "result" : function() {
-                if (this.num1 == '' || this.num2 == '') {
-                    return "You haven't input completely!";
-                } else {
-                    return parseInt(this.num1) + parseInt(this.num2);
+            methods: {
+                expandAllCat: function(e) {
+                    
+                },
+                expandCat: function (e) {
+                    let topEl = e.currentTarget.parentElement.nextElementSibling;
+                    let oldstyle = topEl.getAttribute('style');
+                    let newStyle = oldstyle != "display:block" ? "display:block" : "display:none";
+                    topEl.setAttribute('style', newStyle);
+                    let oldtext = e.currentTarget.text.trim();
+                    var folded = /^[+]/.test(oldtext);
+                    let newtext = folded ? oldtext.replace('+', '-') : oldtext.replace('-', '+');
+                    e.currentTarget.text = newtext;
+                },
+                selectBlog: function (e) {
+                    let obj = e.currentTarget.parentElement.parentElement.parentElement.parentElement;
+                    this.currentCatalog = obj.firstElementChild.firstElementChild.text.trim().replace(/^[\-] /, '');
+                    this.currentBlog = e.currentTarget.text.trim();
+                    this.currentLink = "# " + this.currentCatalog + " >> " + this.currentBlog;
                 }
+            },
+            computed: {
+            },
+            updated: {
+
             }
-        }
-    });
+        }).mount('#contentPane');
 </script>
 <!-- 渲染脚本 结束 -->
 

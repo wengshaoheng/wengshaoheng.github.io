@@ -22,6 +22,20 @@ body {
     font-size: 12pt;
     font-style: italic;
     text-decoration: underline;
+    clear: both;
+    margin-bottom: 15px;
+}
+.footer {
+    background-color:#42A0FF;
+	color: white;
+	text-align:left;
+    height: 10%;
+    font-size: 12pt;
+    font-style: blod;
+    clear:both;
+	text-align:center;
+    padding:5px;
+    margin-top: 15px;
 }
 .navTitle {
     display: inline-block;
@@ -74,13 +88,6 @@ body {
 	width:72%;
 	float:right;
 	text-align: left;
-}
-.footer {
-	background-color:black;
-	color:white;
-	clear:both;
-	text-align:center;
-   	padding:5px;	 	 
 }
 .button {
     display: inline-block;
