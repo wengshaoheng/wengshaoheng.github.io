@@ -20,14 +20,26 @@
 		<div id="contentPane" style="clear: both; margin: 2;">
 			<div id="nav" class="nav">
                 <span class="navTitle" @click="expandAllCat($event)">{{navTitle}}</span> <br />
-                <div id="blogCatList" v-for="(blogCat, index) in blogList">
+                <div>
+                    <div class="catalog">
+                        <a href="#" @click="expandCat($event)">+ 工具集</a>
+                    </div>
+                    <ul class="hide">
+                        <li>
+                            <div>
+                                <a href="#" @click="selectMenuItem($event)">@ 计算器</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div v-for="(blogCat, index) in blogList">
                     <div class="catalog">
                         <a href="#" @click="expandCat($event)">+ {{blogCat.catalog}}</a>
                     </div>
-                    <ul :id="a+index" style="display:none;">
+                    <ul :id="a+index" class="hide">
                         <li>
                             <div v-for="(blog, index2) in blogCat.articleList">
-                                <a :href="blog.url" @click="selectBlog($event)">{{index2 + 1}}. {{blog.title}}</a>
+                                <a :href="blog.url" @click="selectMenuItem($event)">{{index2 + 1}}. {{blog.title}}</a>
                             </div>
                         </li>
                     </ul>
@@ -41,12 +53,15 @@
                         <router-link to="/bar">Go to Bar</router-link>
                     </div>
                     <router-view></router-view>
+                    <div>
+                        <button :disabled="isDisabled" class="button3">Button</button>
+                        <button @click="isDisabled = !isDisabled" class="blue">Cc</button>
+                    </div>
                 </div>
-                
             </div>
             <div style="clear:both;"></div>
         </div>
-        <div id="footer" class="footer">Just for my daily!</div>
+        <div id="footer" class="footer">@Just for my daily!</div>
 	</div> 
 </body>
 
@@ -69,43 +84,40 @@
         const router = new VueRouter({
             routes : routes 
         })
-	    var content = new Vue({
+	    var app = new Vue({
             router: router,
             el: '#contentPane',
             data: {
                 "navTitle": "工作笔记列表",
+                "catShowIndicator" : false,
                 "blogList": blogList,
                 "currentCatalog": "",
                 "currentBlog": "",
-                "currentLink": ""
+                "currentLink": "",
+                "isDisabled" : false
             },
             methods: {
                 expandAllCat: function(e) {
-                    
+                    this.catShowIndicator = !this.catShowIndicator;
                 },
                 expandCat: function (e) {
                     let topEl = e.currentTarget.parentElement.nextElementSibling;
-                    let oldstyle = topEl.getAttribute('style');
-                    let newStyle = oldstyle != "display:block" ? "display:block" : "display:none";
-                    topEl.setAttribute('style', newStyle);
+                    let oldstyle = topEl.getAttribute('class');
+                    let newStyle = oldstyle != "show" ? "show" : "hide";
+                    topEl.setAttribute('class', newStyle);
                     let oldtext = e.currentTarget.text.trim();
                     var folded = /^[+]/.test(oldtext);
                     let newtext = folded ? oldtext.replace('+', '-') : oldtext.replace('-', '+');
                     e.currentTarget.text = newtext;
                 },
-                selectBlog: function (e) {
+                selectMenuItem: function (e) {
                     let obj = e.currentTarget.parentElement.parentElement.parentElement.parentElement;
                     this.currentCatalog = obj.firstElementChild.firstElementChild.text.trim().replace(/^[\-] /, '');
                     this.currentBlog = e.currentTarget.text.trim();
                     this.currentLink = "# " + this.currentCatalog + " >> " + this.currentBlog;
                 }
-            },
-            computed: {
-            },
-            updated: {
-
             }
-        }).mount('#contentPane');
+        }).$mount('#contentPane');
 </script>
 <!-- 渲染脚本 结束 -->
 

@@ -129,3 +129,29 @@ body {
 .catalog a:hover,a:active {
     background-color: #4A935D;
 }
+
+.clear {
+    clear : both;
+}
+
+.show {
+    display : block;
+}
+
+.hide {
+    display : none;
+}
+
+.button3 {
+    width: 60px;
+}
+
+.red .button3 {
+    background-color: red;
+}
+
+.blue .button3 {
+    background-color: blue;
+}
+
+
