@@ -24,6 +24,7 @@ body {
     text-decoration: underline;
     clear: both;
     margin-bottom: 15px;
+    border-bottom: solid 6px #6398BC;
 }
 .footer {
     background-color:#42A0FF;
@@ -36,6 +37,7 @@ body {
 	text-align:center;
     padding:5px;
     margin-top: 15px;
+    border-top: solid 5px #6398BC;
 }
 .navTitle {
     display: inline-block;
@@ -46,6 +48,7 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
+    border-bottom: solid 3px #8DC84D;
 }
 .currentLink {
     display: inline-block;
@@ -60,6 +63,7 @@ body {
     padding: 0;
     width: 100%;
     height: 30px;
+    border-bottom: solid 3px #96B97D;
 }
 .nav {
 	line-height:30px;
@@ -67,7 +71,6 @@ body {
 	width:25%;
     float:left;
     padding-right: 1;
-    border: solid 1px black;
 }
 .nav ul {
     list-style-type: none;
@@ -89,7 +92,6 @@ body {
 	width:73%;
 	float:right;
     text-align: left;
-    border: solid 1px black;
 }
 .button {
     display: inline-block;
