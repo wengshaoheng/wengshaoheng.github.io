@@ -67,6 +67,7 @@ body {
 	width:25%;
     float:left;
     padding-right: 1;
+    border: solid 1px black;
 }
 .nav ul {
     list-style-type: none;
@@ -85,9 +86,10 @@ body {
 }
 .section {
 	color: black;
-	width:72%;
+	width:73%;
 	float:right;
-	text-align: left;
+    text-align: left;
+    border: solid 1px black;
 }
 .button {
     display: inline-block;

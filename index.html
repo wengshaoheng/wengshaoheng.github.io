@@ -19,12 +19,12 @@
 		</div>
 		<div id="contentPane" style="clear: both; margin: 2;">
 			<div id="nav" class="nav">
-                <span class="navTitle" @click="expandAllCat($event)">{{navTitle}}</span> <br />
+                <span title="双击展开或关闭全部" class="navTitle" @dblclick="expandAllCat($event)">{{navTitle}}</span> <br />
                 <div>
                     <div class="catalog">
                         <a href="#" @click="expandCat($event)">+ 工具集</a>
                     </div>
-                    <ul class="hide">
+                    <ul class="hide" ref="catalogItem">
                         <li>
                             <div>
                                 <a href="#" @click="selectMenuItem($event)">@ 计算器</a>
@@ -36,7 +36,7 @@
                     <div class="catalog">
                         <a href="#" @click="expandCat($event)">+ {{blogCat.catalog}}</a>
                     </div>
-                    <ul :id="a+index" class="hide">
+                    <ul :id="a+index" class="hide" ref="catalogItem">
                         <li>
                             <div v-for="(blog, index2) in blogCat.articleList">
                                 <a :href="blog.url" @click="selectMenuItem($event)">{{index2 + 1}}. {{blog.title}}</a>
@@ -46,7 +46,7 @@
                 </div>
 			</div>
 			<div class="section">
-                <span class="currentLink">{{currentLink}}</span>
+                <div class="clear"><span class="currentLink">{{currentLink}}</span></div>
                 <div id="mypage">
                     <div>
                         <router-link to="/calc">Go to Foo</router-link>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <div style="clear:both;"></div>
+            <div class="clear" />
         </div>
         <div id="footer" class="footer">@Just for my daily!</div>
 	</div> 
@@ -71,9 +71,7 @@
 <script src="https://cdn.staticfile.org/vue-router/2.7.0/vue-router.min.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.13.1/highlight.min.js"></script>
 <script src="blogList.js"></script>
-<script type="module">
-import "./router.config.js";
-</script>
+
 <script src="data.js"></script>
 <script>
         const a = "BLOGCAT_";
@@ -92,7 +90,7 @@ import "./router.config.js";
             el: '#contentPane',
             data: {
                 "navTitle": "工作笔记列表",
-                "catShowIndicator" : false,
+                "showAllCat" : false,
                 "blogList": blogList,
                 "currentCatalog": "",
                 "currentBlog": "",
@@ -101,7 +99,17 @@ import "./router.config.js";
             },
             methods: {
                 expandAllCat: function(e) {
-                    this.catShowIndicator = !this.catShowIndicator;
+                    let clazz = !this.showAllCat ? 'show' : 'hide';
+                    let catList = this.$refs.catalogItem;
+                    for (idx in catList) {
+                        catList[idx].setAttribute('class', clazz);
+                        let pes = catList[idx].previousElementSibling.firstElementChild;
+                        let fromInd = this.showAllCat ? '-' : '+';
+                        let toInd   = this.showAllCat ? '+' : '-'
+                        let text = pes.text.replace(fromInd, toInd);
+                        pes.text = text;
+                    }
+                    this.showAllCat = !this.showAllCat;
                 },
                 expandCat: function (e) {
                     let topEl = e.currentTarget.parentElement.nextElementSibling;

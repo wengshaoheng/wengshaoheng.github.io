@@ -1,4 +1,4 @@
-import Calc from Calc.vue;
+import Calc from './Calc.vue';
 
 export default {
     routes : [
