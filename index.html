@@ -120,6 +120,9 @@
                     this.currentCatalog = obj.firstElementChild.firstElementChild.text.trim().replace(/^[\-] /, '');
                     this.currentBlog = e.currentTarget.text.trim();
                     this.currentLink = "# " + this.currentCatalog + " >> " + this.currentBlog;
+                    axios.get("/articles/JAVA/20190103a.html").then(function(response){
+                        alert(response.data);
+                    });
                 }
             },
             beforeMount : function(height) {
