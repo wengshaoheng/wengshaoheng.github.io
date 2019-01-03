@@ -72,6 +72,7 @@ body {
     width:25%;
     float:left;
     padding-right: 1;
+    overflow: scroll;
 }
 .nav ul {
     list-style-type: none;
