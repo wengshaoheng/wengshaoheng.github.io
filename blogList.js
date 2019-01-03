@@ -6,9 +6,9 @@ var blogList = [
 				"category" : "GIT",
 				"articles" : [
 					{
-						"title" : "xxxx",
+						"title" : "Git的基本使用",
 						"createdDate" : "20190103",
-						"articleId" : "#"
+						"articleId" : "a"
 					}
 				]
 			}
