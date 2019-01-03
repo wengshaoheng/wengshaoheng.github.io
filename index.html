@@ -121,12 +121,13 @@
                     this.currentBlog = e.currentTarget.text.trim();
                     this.currentLink = "# " + this.currentCatalog + " >> " + this.currentBlog;
                     axios.get("/articles/JAVA/201901031a.html").then(function(response){
+                        document.getElementById('articleContent').innerHTML = response.data;
+                    }).catch(function(error){
                         let ac = document.getElementById('articleContent');
-                        alert(response.status)
                         if (response.status === 404) {
                             ac.innerHTML = '<p>文章飞走了!</p>';
                         } else {
-                            ac.innerHTML = response.data;
+                            ac.innerHTML = '<p>服务器出错了!</p>';
                         }
                     });
                 }
