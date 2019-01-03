@@ -121,7 +121,7 @@
                     this.currentBlog = e.currentTarget.text.trim();
                     this.currentLink = "# " + this.currentCatalog + " >> " + this.currentBlog;
                     axios.get("/articles/JAVA/20190103a.html").then(function(response){
-                        alert(response.data);
+                        document.getElementById('articleContent').innerHTML = response.data;
                     });
                 }
             },
