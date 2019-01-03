@@ -34,12 +34,14 @@
                 </div>
                 <div v-for="(blogCat, index) in blogList">
                     <div class="catalog">
-                        <a href="#" @click="expandCat($event)">+ {{blogCat.catalog}}</a>
+                        <a href="#" @click="expandCat($event)">+ {{blogCat.catalog}} 工作笔记</a>
                     </div>
                     <ul :id="a+index" class="hide" ref="catalogItem">
                         <li>
-                            <div v-for="(blog, index2) in blogCat.articleList">
-                                <a :href="blog.url" @click="selectMenuItem($event)">{{index2 + 1}}. {{blog.title}}</a>
+                            <div v-for="(categoryItem, index2) in blogCat.articleList">
+                                <a :href="article.articleId" @click="selectMenuItem($event)" v-for="(article, index3) in categoryItem.articles">
+                                    {{index2 + 1}}. {{article.title}}
+                                </a>
                             </div>
                         </li>
                     </ul>
