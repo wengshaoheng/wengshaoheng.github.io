@@ -8,10 +8,11 @@ body {
 	width : 85%;
 }
 .app {
-	padding: 0;
+    padding: 0;
     text-align: center;
     height: 100%;
     max-width: 1280px;
+    min-height: 900px;
 }
 .header {
 	background-color:#42A0FF;
@@ -68,7 +69,7 @@ body {
 .nav {
 	line-height:30px;
 	background-color:#eeeeee;
-	width:25%;
+    width:25%;
     float:left;
     padding-right: 1;
 }
@@ -79,10 +80,9 @@ body {
     text-align: left;
 }
 .nav ul li a {
-    display: block;
+    display: inline-block;
     height: 100%;
     width: 100%;
-    float: left;
 }
 .nav ul li a:hover,a:active {
     background-color: #7CCB3D;

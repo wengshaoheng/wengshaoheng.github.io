@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Blue Printing</title>
+
+<style>
+#app {
+	margin: 0 auto;
+	width: 80%;
+	padding: 3px 3px 3px 3px;
+	min-width: 1024px;
+}
+
+#header {
+	min-height: 100px;
+	background-color: blue;
+	margin-bottom: 3px;
+	background-image: url(bg.png);
+	background-repeat: repeat-x;
+}
+
+#navigator {
+	width: 20%;
+	background-color: #B1E1FD;
+	float: left;
+	position: relative;
+	left: 0;
+	top: 0;
+	min-height: 600px;
+}
+
+#navigator ul {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+
+#navigator ul li a {
+	margin:0;
+	padding:0;
+	display: block;
+	background-color: #B1E1FD;
+	cursor: pointer;
+}
+
+#navigator ul li a:hover,a:active {
+	background-color: #7CCB3D;
+}
+
+#navigator ul li ul li a {
+	margin:0;
+	padding-left:10%;
+	display: block;
+	background-color: lightblue;
+}
+
+#navigator ul li ul li a:hover,a:active {
+	background-color: #9BA279;
+}
+
+#content {
+	background-color: #ECF4FF;
+	float: right;
+	position: relative;
+	top: 0;
+	min-height: 600px;
+	width:79%;
+}
+
+#footer {
+	min-height: 80px;
+	background-color: lightblue;
+	margin-top: 3px;
+}
+
+.clear {
+	clear : both;
+}
+</style>
+
+</head>
+
+<body>
+	<div id="app">
+		<div id="header">header</div>	
+		<div>
+			<div id="navigator">
+				<ul>
+					<li>
+						<a href="#">item 1</a>
+						<ul>
+							<li><a href="#">sub item1</a></li>
+							<li><a href="#">sub item2</a></li>
+							<li><a href="#">sub item3</a></li>
+							<li><a href="#">sub item4</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<a href="#">item 2</a>
+						<ul>
+							<li><a href="#">sub item1</a></li>
+							<li><a href="#">sub item2</a></li>
+							<li><a href="#">sub item3</a></li>
+							<li><a href="#">sub item4</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<a href="#">item 3</a>
+						<ul>
+							<li><a href="#">sub item1</a></li>
+							<li><a href="#">sub item2</a></li>
+							<li><a href="#">sub item3</a></li>
+							<li><a href="#">sub item4</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<a href="#">item 4</a>
+						<ul>
+							<li><a href="#">sub item1</a></li>
+							<li><a href="#">sub item2</a></li>
+							<li><a href="#">sub item3</a></li>
+							<li><a href="#">sub item4</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<a href="#">item 5</a>
+						<ul>
+							<li><a href="#">sub item1</a></li>
+							<li><a href="#">sub item2</a></li>
+							<li><a href="#">sub item3</a></li>
+							<li><a href="#">sub item4</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div id="content">content</div>
+			<div class="clear" />
+		</div>
+		<div id="footer">footer</div>
+		<div class="clear" />
+	</div>
+</body>
+</html>
