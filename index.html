@@ -120,8 +120,13 @@
                     this.currentCatalog = obj.firstElementChild.firstElementChild.text.trim().replace(/^[\-] /, '');
                     this.currentBlog = e.currentTarget.text.trim();
                     this.currentLink = "# " + this.currentCatalog + " >> " + this.currentBlog;
-                    axios.get("/articles/JAVA/20190103a.html").then(function(response){
-                        document.getElementById('articleContent').innerHTML = response.data;
+                    axios.get("/articles/JAVA/201901031a.html").then(function(response){
+                        let ac = document.getElementById('articleContent');
+                        if (response.status === 404) {
+                            ac.innerHTML = '<p>文章飞走了!</p>';
+                        } else {
+                            ac.innerHTML = response.data;
+                        }
                     });
                 }
             },
