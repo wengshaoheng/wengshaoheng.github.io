@@ -1,0 +1,324 @@
+>>Spring Boot/MVC
+注解:
+@SpringBootApplication : 注解应用入口，包含@EnableAutoConfiguration @Configuration @ComponentScan 
+   如果应用中含有web包，自动加入@EnableWebMvc
+  
+@RestController 注解一个类为REST 服务, 返回值为json  @Controller与@ResponseBody 的组合
+@Controller 注解一个类为WEB控制器，返回值为视图模型
+@RequestMapping(value="", method=RequestMethod.GET) 作用在方法或类，作用在类上为方法上级根目录，不指定mdthod 则支持所有方法
+@PostMapping @GetMapping
+@RequestParam(value="key", defaultValue="") 作用在方法参数
+@PathVariable("url参数名") xxx/{参数名}  注解方法参数，取URL上参数值
+@Configuration 注解在类上，标记该类为bean的定义的类
+@EnableAutoConfiguration 注解在类上，使spring boot 加载各类bean, 设置及资源
+@ComponentScan 注解在上，告诉spring 在basepakcages搜索各组件，服务等等
+@EnableCaching 依赖CacheManager
+@Cacheable("") 先查缓存，没则从源取，再放到缓存里 
+@CachePut("") 每次都从源取，再放到缓存
+@CacheEvict("") 删除缓存 
+@RequestBody 作用在方法参数 content-type json/app xml/app 把内容写向实体
+@ResponseBody  响应直接返回json
+@RequestHeader 
+
+
+sftp -oPort=60001 root@192.168.0.254
+scp -P port xxx xx@host
+
+##################################################
+>>Spring Cloud Netflix
+服务发现：Eureka Clients
+
+##################################################
+@maven
+create a project
+mvn -B archetype:generate -DgroupId=com.test -DartifactId=App1
+mvn -B archetype:generate  -DarchetypeCatalog=internal -DgroupId=com.test -DartifactId=Web1 -DarchetypeArtifactId=maven-archetype-webapp 
+
+* maven-archetype-archetype 
+* maven-archetype-j2ee-simple 
+* maven-archetype-mojo 
+* maven-archetype-portlet 
+* maven-archetype-profiles (currently under development) 
+* maven-archetype-quickstart 
+* maven-archetype-simple (currently under development) 
+* maven-archetype-site 
+* maven-archetype-site-simple 
+* maven-archetype-webapp 
+mvn package -P profileId 激活指定的profile
+#####################
+@Git
+
+复制远程分支到本地：git clone -b branchName https://github.com/Oracle-ao/ao-shop.git
+复制远程分支到本地：git clone -b Dev git@gitlab.0easy.com:liujian/aiotcloud.git
+复制远程项目到本地：git clone git@gitlab.0easy.com:liujian/aiotcloud.git
+
+git clone git@gitlab.0easy.com:java/cloud-config-repo.git
+
+git push --set-upstream origin master
+
+拉取远程更新：git pull origin Dev:Dev
+提交远程更新：git push origin Dev:Dev
+关联本地与远程：git remote add origin https://github.com/jerryhanjj/baike_spider.git
+提交新增或更新文件到staging空间：git add 文件名
+提交变更到仓库：git commit -m "注释"
+删除文件：rm 文件 -> git rm [-r] 文件 -> git commit -m "注解"
+修改文件：git add 文件 -> git commit -m "注解"
+查看当前分支：git branch 带*号为当前分支
+创建分支：git branch 分支名
+切换分支：git checkout 分支名
+创建并切换分支：git checkout -b 分支名
+删除分支：git branch -d 分支名
+合并分支到当前分支：git merge 分支名
+合并并禁用fast forward使用变通模式：git merge --no-ff -m 分支名
+查看当前分支状态：git status
+查看分支合并情况：git log --graph --pretty=oneline --abbrev-commit
+建立快照：git stash
+查看快照列表: git stash list
+恢复现场：
+git stash apply -> git stash drop
+git stash pop
+强制删除没有合并过的分支：git branch -D 分支名
+查看远程仓库名：git remote [-v]
+查看远程库信息，使用git remote -v；
+本地新建的分支如果不推送到远程，对其他人就是不可见的；
+从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；
+在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；
+建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name；
+$ git branch --set-upstream-to origin/test test
+从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
+
+git checkout /e/git/aa.txt /*恢复到上一次提交时的状态，注意：这种方式在git add .之后不能撤销-*/
+git reset HEAD /e/git/aa.txt /*若已经git add .了，用这条命令取消，再使用上一条的checkout即可*/
+git status      /*--提示当前没有可以提交的内容---------------*/
+git stash pop stash@{0} pull覆盖后还原本地修改
+
+远程先开好分支然后拉到本地
+git checkout -b feature-branch origin/feature-branch    //检出远程的feature-branch分支到本地
+本地先开好分支然后推送到远程
+$  git checkout -b feature-branch    //创建并切换到分支feature-branch  
+$  git push origin feature-branch:feature-branch    //推送本地的feature-branch(冒号前面的)分支到远程origin的feature-branch(冒号后面的)分支(没有会自动创建)
+
+git fetch origin
+git checkout -b Dev origin/Dev
+
+git checkout Test
+git merge --no-ff Dev
+git push origin Test
+
+git tag v1.0
+git tag v1.0 commit-id
+git tag 
+git show tag-id
+git tag -a tag-id -m 'msg' commit-id
+git checkout tag-id (switch to the target tag)
+git tag -d tag-id
+
+但是目前这个标签仅仅是提交到了本地git仓库.如何同步到远程代码库
+
+tag 远程推送:
+
+1
+zhangzhi@moke:~/code/demo$git push origin --tags
+这样我们就把本地版本推送到了远程代码仓库.
+
+如果刚刚同步上去,你缺发现一个致命bug ,需要重新打版本,现在还为时不晚.
+删除标签:
+1
+zhangzhi@moke:~/code/demo$git tag -d V1.2
+到这一步我们只是删除了本地 V1.2的版本,可是线上V1.2的版本还是存在,如何办?
+这时我们可以推送的空的同名版本到线下,达到删除线上版本的目标:
+1
+zhangzhi@moke:~/code/demo$git push origin :refs/tags/V1.2
+这时本地和远程的 V1.2 版本已经被我们移除掉.
+
+ 
+
+如何获取远程版本:
+
+1
+zhangzhi@moke:~/code/demo$git fetch origin tag V1.2
+
+1
+zhangzhi@moke:~/code/demo$git tag -d V1.2
+到这一步我们只是删除了本地 V1.2的版本,可是线上V1.2的版本还是存在,如何办?
+
+这时我们可以推送的空的同名版本到线下,达到删除线上版本的目标:
+
+1
+zhangzhi@moke:~/code/demo$git push origin :refs/tags/V1.2
+
+$ git fetch --all
+$ git reset --hard origin/master 
+$ git pull
+
+在项目中我们需要根据tag创建分支.现将创建步骤总结一下.假设在你的主分支上有一个tag为v1.0,主分支的名字为master.
+
+1.执行:git origin fetch 获得最新.
+
+2.通过:git branch <new-branch-name> <tag-name> 会根据tag创建新的分支.
+
+例如:git branch newbranch v1.0 . 会以tag v1.0创建新的分支newbranch;
+
+3.可以通过git checkout newbranch 切换到新的分支.
+
+4.通过 git push origin newbranch 把本地创建的分支提交到远程仓库.
+
+现在远程仓库也会有新创建的分支啦.
+
+git tag
+要显示附注信息,我们需要用 show 指令来查看
+
+git show V1.2
+但是目前这个标签仅仅是提交到了本地git仓库.如何同步到远程代码库
+
+git push origin --tags
+如果刚刚同步上去,你缺发现一个致命bug ,需要重新打版本,现在还为时不晚.
+
+git tag -d V1.2
+到这一步我们只是删除了本地 V1.2的版本,可是线上V1.2的版本还是存在,如何办?这时我们可以推送的空的同名版本到线下,达到删除线上版本的目标:
+
+git push origin :refs/tags/V1.2
+如何获取远程版本?
+
+git fetch origin tag V1.2
+这样我们可以精准拉取指定的某一个版本.适用于运维同学部署指定版本
+
+2）分支(branch)操作相关命令
+查看本地分支：$ git branch
+查看远程分支：$ git branch -r
+创建本地分支：$ git branch [name] ----注意新分支创建后不会自动切换为当前分支
+切换分支：$ git checkout [name]
+创建新分支并立即切换到新分支：$ git checkout -b [name]
+删除分支：$ git branch -d [name] ---- -d选项只能删除已经参与了合并的分支，对于未有合并的分支是无法删除的。如果想强制删除一个分支，可以使用-D选项
+合并分支：$ git merge [name] ----将名称为[name]的分支与当前分支合并
+创建远程分支(本地分支push到远程)：$ git push origin [name]
+删除远程分支：$ git push origin :heads/[name]
+
+
+比如我们有 2 个分支：master, dev，现在想查看这两个 branch 的区别，有以下几种方式：
+查看 dev 有，而 master 中没有的：
+git log dev ^master 
+
+同理查看 master 中有，而 dev 中没有的内容：
+git log master ^dev
+
+---------------------
+
+本文来自 拭心 的CSDN 博客 ，全文地址请点击：https://blog.csdn.net/u011240877/article/details/52586664?utm_source=copy 
+
+##################################################################################
+@redis
+
+##################################################################################
+@MySQL
+grant all privileges
+
+alter table zz_info 
+partition by range(year(date2))
+subpartition by hash(quarter(date2 ))
+subpartitions 4 (
+    partition p0 values less than (2015),
+    partition p2015 values less than (2016),
+    partition p2016 values less than (2017),
+    partition p2017 values less than (2018),
+    partition p2018 values less than (2019),
+    partition p1 values less than maxvalue
+);
+##################################################################################
+@openssl
+1：生成CA证书私钥
+openssl genrsa -out ca.key 2048 
+2：生成CSR文件
+openssl req -new -key ca.key -out ca.csr
+3：命令行生成CA根证书
+openssl x509 -req -in ca.csr -signkey ca.key -out ca.crt
+1）使用OPENSSL生成私钥
+openssl genrsa -out server.key 1024
+2）生成CSR证书请求文件：
+openssl req -new -key server.key -out server.csr
+准备工作全部做好之后，自建的CA机构就可以根据服务器提供的证书请求文件CSR颁发证书了
+openssl x509 -req -sha256 -CA ca.crt -CAkey ca.key -CAcreateserial -in server.csr -out server.crt
+
+##############################
+@docker
+docker ps
+docker images
+docker image ls
+docker image ls 
+docker ps -a
+docker rm con-id
+docker rmi [f] img-id
+docker build -t name:tag .
+docker pull image-id
+
+#####################################################################
+# MongDB
+./bin/mongod --dbpath /data/db  --config ~/mongo.cfg  启动mongdb
+./bin/mongo   启动mongdb shell
+db 命令用于查看当前操作的文档（数据库）
+"show dbs" 命令可以显示所有数据的列表。
+show tables 
+show collections
+
+db.dropDatabase()
+db.collection.drop()
+db.collection.insert
+db.collection.save
+db.createCollection("name", option)
+
+use dbname; //create database
+mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
+
+repl set 复制集
+分片 shard
+Shard:
+用于存储实际的数据块，实际生产环境中一个shard server角色可由几台机器组个一个replica set承担，防止主机单点故障
+
+Config Server:
+mongod实例，存储了整个 ClusterMetadata，其中包括 chunk信息。
+
+Query Routers:
+前端路由，客户端由此接入，且让整个集群看上去像单一数据库，前端应用可以透明使用。
+
+# curl
+$ curl -X POST http://localhost:6804/deviceSn/importDeviceSn --form "filename=@/d/abc.xlsx"
+
+
+
+###############
+linux
+
+nmcli connection show
+
+nmcli connection show enp0s3
+
+nmcli connection modify enp0s3 \
+connection.autoconnect yes \
+ipv4.method auto
+
+nmcli connection up enp0s3
+
+
+[kubernetes]
+name=Kubernetes
+baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=0s
+
+
+#################################################################
+tensorflow
+
+pip install --ignore-installed --upgrade tensorflow-gpu
+
+
+D:\Python36\Scripts>pip install --ignore-installed --upgrade tensorflow-gpu -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+
+
+
+##################################################################
+ANTLR
+
+首行
+grammar XX
+

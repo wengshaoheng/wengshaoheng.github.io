@@ -1,0 +1,31 @@
+登录192.168.0.111服务器 用户名devops 密码devops
+
+以pm服务为例
+1.查询容器找到自己的pods
+kubectl get pods -n iot
+
+[devops@master iot_service]$ kubectl get pods -n iot
+NAME                       READY     STATUS    RESTARTS   AGE
+cm-d8d99f5d5-58rrv         1/1       Running   0          1h
+config-56ddbf5c7d-x9t42    1/1       Running   0          2h
+dm-7ffb7dfb4f-85rrp        1/1       Running   0          1h
+emqtt-0                    1/1       Running   0          9d
+es-d59fc8767-pq4cx         1/1       Running   0          1h
+eureka-6dc9c7bd77-65jws    1/1       Running   0          3h
+gateway-559c5d767c-4bkk9   1/1       Running   0          2h
+mongo-0                    2/2       Running   0          8d
+mysql-2vb2d                1/1       Running   0          5d
+pm-c89c5f4cb-kjr5q         1/1       Running   0          11m
+
+
+2.进入容器
+kubectl -n iot exec -it pm-c89c5f4cb-kjr5q /bin/sh
+
+3.不进入容器执行容器的命令
+kubectl -n iot exec -it pm-c89c5f4cb-kjr5q -- tail -f logs/all.log
+
+4.查看服务打印到终端的信息
+kubectl -n iot logs pm-c89c5f4cb-kjr5q
+
+5. 实时打印终端信息
+kubectl -n iot logs -f pm-c89c5f4cb-kjr5q
