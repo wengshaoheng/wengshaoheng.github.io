@@ -6,8 +6,13 @@ var blogList = [
 				"category" : "GIT",
 				"articles" : [
 					{
-						"title" : "Git的基本使用",
+						"title" : "Git 基本命令",
 						"createdDate" : "20190103",
+						"articleId" : "a"
+					},
+					{
+						"title" : "Git 标签使用",
+						"createdDate" : "20190104",
 						"articleId" : "a"
 					}
 				]
