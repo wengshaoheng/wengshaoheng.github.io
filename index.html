@@ -122,7 +122,7 @@
                     this.currentCatalog = obj.firstElementChild.firstElementChild.text.trim().replace(/^[\-] /, '');
                     this.currentBlog = e.currentTarget.text.trim();
                     this.currentLink = "# " + this.currentCatalog + " >> " + this.currentBlog;
-                    let url = '/articles/' + e.currentTarget.getAttribute('aid') + '.html';
+                    let url = '/articles/' + e.currentTarget.getAttribute('aid') + '.html?timestamp=' + new Date().getTime();
                     console.log("url = " + url);
                     axios.get(url).then(function(response) {
                         document.getElementById('articleContent').innerHTML = response.data;
